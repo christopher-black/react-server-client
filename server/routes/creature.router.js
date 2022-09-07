@@ -6,16 +6,12 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => {
     // When you fetch all things in these GET routes, strongly encourage ORDER BY
     // so that things always come back in a consistent order 
-    const sqlText = `SELECT * FROM creatures ORDER BY name, origin DESC;`;
-    pool.query(sqlText)
-        .then((result) => {
-            console.log(`Got stuff back from the database`, result);
-            res.send(result.rows);
-        })
-        .catch((error) => {
-            console.log(`Error making database query ${sqlText}`, error);
-            res.sendStatus(500); // Good server always responds
-        })
+    res.send([
+        { name: 'Unicorn', origin: 'Britain' },
+        { name: 'Sphinx', origin: 'Egypt' },
+        { name: 'Jackalope', origin: 'America' },
+        { name: 'TEST', origin: 'Test'}
+    ]);
 })
 
 
